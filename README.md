@@ -10,6 +10,17 @@ A web backend for the GIS signup system
 * Parameter: Temporary access token   
 * Return: base64 encoded image, first name, last name    
 
+### JSON format
+```
+{ 
+  'valid': true,
+  'due': false,
+  'cardId': 123456, 
+  'avatar': 'abcdefg==',
+  'name': [ 'John', 'Doe' ] 
+}
+```    
+
 ## Database
 ### Lookup table
 1. Card ID
