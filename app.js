@@ -5,23 +5,19 @@ var logger       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var sign_up      = require('./routes/sign_up');
-var mongoose = require('mongoose');
+var mongoose     = require('mongoose');
+var app          = express();
 
-var app = express();
+/******************************/
+// Route path
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.post("/sign_up/add_record",      sign_up.add_record);
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.delete("/sign_up/delete_record", sign_up.delete_record);
 
-app.use('/', sign_up);
+app.get("/sign_up/record/:id",       sign_up.get_specific_record);
+
+app.get("/sign_up/record",           sign_up.get_all_records);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -29,6 +25,11 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
+
+/******************************/
+
+
+
 
 // error handlers
 
