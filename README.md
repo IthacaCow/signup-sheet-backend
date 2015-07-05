@@ -13,11 +13,11 @@ A web backend for the GIS signup system
 ### JSON format
 ```
 { 
-  'valid': <is_the_user_valid>, 
-  'due': <is_the_user_overdue>,
-  'cardId': <card_id>, 
-  'avatar': '<base64>',
-  'name': [ '<first_name>', '<last_name>' ] 
+  'valid': true,
+  'due': false,
+  'cardId': 123456, 
+  'avatar': 'abcdefg==',
+  'name': [ 'John', 'Doe' ] 
 }
 ```    
 
