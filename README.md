@@ -8,4 +8,11 @@ A web backend for the GIS signup system
 
 ### get_user_info
 * Parameter: Temporary access token   
-* Return: base64 encoded image, first name, last name
+* Return: base64 encoded image, first name, last name    
+
+## Database
+### Fields
+1. Card ID
+2. First name
+3. Last name
+4. Avatar (base64 encoded)
