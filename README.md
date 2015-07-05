@@ -11,8 +11,13 @@ A web backend for the GIS signup system
 * Return: base64 encoded image, first name, last name    
 
 ## Database
-### Fields
+### Lookup table
 1. Card ID
 2. First name
 3. Last name
 4. Avatar (base64 encoded)
+
+### Signup sheets
+1. CardID
+2. Signed
+3. Timestamp (year-month-day-hour-minute-second)
