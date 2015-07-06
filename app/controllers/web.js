@@ -1,10 +1,9 @@
 
-var mongoose = require('mongoose');
 var config   = require('environment_variables');
 
-var records  = mongoose.model('Record');
-var admin    = mongoose.model('Admin');
-var events   = mongoose.model('Event');
+var records  = require('../models/record');
+var admin    = require('../models/admin');
+var events   = require('../models/event');
 
 
 exports.admin_login = function (req, res) {
@@ -12,7 +11,7 @@ exports.admin_login = function (req, res) {
 	// don't do password encryption for now
 	// var encrypted_password = admin.encrypt_password( req.body.password );
 	
-	admin.findOne( {req.body.password}, function(error,admin_user){
+	admin.findOne( {password: req.body.password}, function(error,admin_user){
 		if( error ){
 			throw error;
 		}

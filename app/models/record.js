@@ -1,7 +1,8 @@
-var Schema = require('mongoose').Schema;
-var ObjectId = Schema.Types.ObjectID;
+var mongoose = require('mongoose');
+var Schema   = mongoose.Schema;
+var ObjectId = Schema.Types.ObjectId;
 
-var record = new mongoose.Schema({
+var record = new Schema({
 
 	timestamp: 
 		{ type: Date,   default: Date.now , required: true },

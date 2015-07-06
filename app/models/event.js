@@ -1,6 +1,6 @@
-var Schema = require('mongoose').Schema;
+var mongoose = require('mongoose');
 
-var event = new Schema({
+var event = new mongoose.Schema({
 
 	start_time: 
 		{ type: Date,   default: Date.now, required: true },

@@ -1,13 +1,13 @@
-var configs = require('environment_variables');
+var configs         = require('environment_variables');
+var path            = require('path');
+var logger          = require('morgan');
+var cookie_parser   = require('cookie-parser');
+var body_parser     = require('body-parser');
+var method_override = require('method-override');
+var mongoose        = require('mongoose');
+var morgan          = require('morgan');
 
-module.exports = function(app) {
-
-	// Since we'll seperate front end from back end, we do not need view engine here
-	// app.set('views', path.join(__dirname, 'views'));
-	// app.set('view engine', 'jade');
-
-	// uncomment after placing your favicon in /public
-	//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+module.exports = function(express,app) {
 
 	// use morgan to log requests to the console
 	app.use(morgan('dev'));
@@ -15,22 +15,17 @@ module.exports = function(app) {
 	// set up database
 	mongoose.connect( configs.db_path );
 
-	app.use(bodyParser.json());
-	app.use(bodyParser.urlencoded({ extended: false }));
-	app.use(cookieParser());
+	app.use(body_parser.json());
+	app.use(body_parser.urlencoded({ extended: false }));
+	app.use(cookie_parser());
 	app.use(express.static(path.join(__dirname, 'public')));
+	app.set('port', process.env.PORT || 3000);
+	app.set('views', __dirname + '/views');
+	app.use(logger('dev'));
+	app.use(body_parser);
+	app.use(method_override);
+	app.use(express.static(__dirname + '/public'));
 
-	app.configure(function(){
-		app.set('port', process.env.PORT || 3000);
-		app.set('views', __dirname + '/views');
-		app.set('view engine', 'jade');
-		app.use(express.favicon());
-		app.use(express.logger('dev'));
-		app.use(express.bodyParser());
-		app.use(express.methodOverride());
-		app.use(app.router);
-		app.use(express.static(__dirname + '/public'));
-	});
 
-}
+};
 

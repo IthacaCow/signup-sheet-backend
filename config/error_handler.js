@@ -1,6 +1,6 @@
 
 // error handlers
-module.exports = fucntion ( app ) {
+module.exports = function ( app ) {
 
 	// development error handler
 	// will print stacktrace

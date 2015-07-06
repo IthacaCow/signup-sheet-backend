@@ -2,7 +2,7 @@ var api  = require('api');
 var web  = require('web');
 var auth = require('auth');
 
-module.exports = function(app) {
+module.exports = function (app) {
 
 // Verify auth token on every incoming request
 	app.use(auth);
