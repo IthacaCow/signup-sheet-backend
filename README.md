@@ -28,11 +28,27 @@ The backend is divided into two part: API, Web
 * Return: The records (JSON)
 
 
+### get_all_records_in_event
+* Path: `/signup/records/event`
+* REST method: `GET`
+* Parameter: Access Token (String)
+* Parameter: ObjectID of the specific event (String)
+* Return: The records (JSON)
+
+### get_all_events
+* Path: `/signup/records`
+* REST method: `GET`
+* Parameter: Access Token (String)
+* Return: The records (JSON)
+
+
+
 ## For cardreader
 ### signup
 * Path: `/api/signup/`
 * REST method: `GET`
 * Parameter: Card ID    
+* Parameter: Event ID
 * Return: Temporary access token, Object ID
 
 ### get_user_info
