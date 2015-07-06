@@ -1,5 +1,5 @@
 
-var record_schema = new Schema({
+var record = new mongoose.Schema({
 
 	id: 
 		{ type: ObjectId },
@@ -18,17 +18,8 @@ var record_schema = new Schema({
 
 });
 
-// Private APIs
-record_schema.api = {
 
-	get_all_records: function () {
-
-	}
-
-};
-
-
-mongoose.model('Record', record_schema);
+module.exports = mongoose.model('Record', record);
 
 
 
