@@ -10,15 +10,15 @@ The backend is divided into two part: API, Web
 ### delete_record
 * Path: `/signup/record/`
 * REST method: `DELETE`
-* Parameter: ObjectID: (String)
-* Parameter: Access Token: (String)
+* Parameter: ObjectID (String)
+* Parameter: Access Token (String)
 * Return: Status
 
 ### get_specific_record
 * Path: `/signup/record/`
 * REST method: `GET`
-* Parameter: ObjectID: (String)
-* Parameter: Access Token: (String)
+* Parameter: ObjectID (String)
+* Parameter: Access Token (String)
 * Return: The record (JSON)
 
 ### get_all_records
