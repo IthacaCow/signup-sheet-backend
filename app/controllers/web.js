@@ -8,8 +8,11 @@ var records  = mongoose.model('Record');
 var admin    = mongoose.model('Admin');
 
 exports.admin_login = function (req, res) {
-	var encrypted_password = admin.encrypt_password( req.body.password );
-	admin.findOne( {encrypted_password}, function(error,admin_user){
+
+	// don't do password encryption for now
+	// var encrypted_password = admin.encrypt_password( req.body.password );
+	
+	admin.findOne( {req.body.password}, function(error,admin_user){
 		if( error ){
 			throw error;
 		}

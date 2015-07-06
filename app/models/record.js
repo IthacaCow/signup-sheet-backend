@@ -1,20 +1,14 @@
+var Schema = require('mongoose').Schema;
+var ObjectId = Schema.Types.ObjectID;
 
 var record = new mongoose.Schema({
 
-	id: 
-		{ type: ObjectId },
-	card_id: 
-		{ type: String, default: '' },
-	firstname: 
-		{ type: String, default: '' },
-	lastname: 
-		{ type: String, default: '' },
 	timestamp: 
-		{ type: Date,   default: Date.now },
-	avatar: 
-		{ data: Buffer, contentType: String }, 
-	// The base64 image
-	// More info: http://stackoverflow.com/questions/27353346/saving-image-with-mongoose 
+		{ type: Date,   default: Date.now , required: true },
+	user:
+		{ type: ObjectId, required: true, ref: 'User' },
+	event:
+		{ type: ObjectId, required: true, ref: 'Event' },
 
 });
 

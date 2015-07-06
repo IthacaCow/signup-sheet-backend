@@ -19,6 +19,8 @@ module.exports = function(app) {
 
 	app.get("/sign_up/records",       web.get_all_records);
 
+	app.get("/admin/login",           web.admin_login);
+
 // catch 404 and forward to error handler
 // will catch any url that is not on the routing table
 	app.use(function(req, res, next) {
