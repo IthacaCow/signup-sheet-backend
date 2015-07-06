@@ -20,6 +20,8 @@ The backend is divided into two part: API, Web
 * Parameter: ObjectID (String)
 * Parameter: Access Token (String)
 * Return: The record (JSON)
+
+
 #### Example return:
 ```
 { 
@@ -41,6 +43,8 @@ The backend is divided into two part: API, Web
 * REST method: `GET`
 * Parameter: Access Token (String)
 * Return: The records (JSON)
+
+#### Example return:
 ```
 {
 	{ 
@@ -80,6 +84,7 @@ get all records of a specific event
 * Parameter: Access Token (String)
 * Parameter: ObjectID of the specific event (String)
 * Return: The records (JSON)
+
 #### Example return:
 ```
 {
@@ -107,6 +112,7 @@ get all records of a specific event
 * REST method: `GET`
 * Parameter: Access Token (String)
 * Return: The records (JSON)
+
 #### Example return:
 ```
 {
@@ -130,6 +136,7 @@ get all records of a specific event
 * REST method: `POST`
 * Parameter: the admin password (String)
 * Return: Access Token (String), SuccessOrNot (Boolean)
+
 #### Example return:
 ```
 {
@@ -148,6 +155,7 @@ Signing up a user at a specific event
 * Parameter: Card ID    
 * Parameter: Event ID
 * Return: Temporary access token (String), Object ID (String), SuccessOrNot (Boolean), DueOrNot (Boolean)
+
 #### Example return
 ```
 {
@@ -167,6 +175,7 @@ which will return the information of the user who signs up successfully.
 * Parameter: Temporary access token   
 * Parameter: Object ID
 * Return: base64 encoded image, first name, last name    
+
 #### Example return:
 ```
 { 
