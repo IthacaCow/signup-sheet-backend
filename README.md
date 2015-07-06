@@ -20,7 +20,7 @@ The backend is divided into two part: API, Web
 * Parameter: ObjectID (String)
 * Parameter: Access Token (String)
 * Return: The record (JSON)
-* Example return:
+#### Example return:
 ```
 { 
 	"_id": 123456789, 
@@ -80,7 +80,7 @@ get all records of a specific event
 * Parameter: Access Token (String)
 * Parameter: ObjectID of the specific event (String)
 * Return: The records (JSON)
-* Example return:
+#### Example return:
 ```
 {
 	{ 
@@ -107,7 +107,7 @@ get all records of a specific event
 * REST method: `GET`
 * Parameter: Access Token (String)
 * Return: The records (JSON)
-* Example return:
+#### Example return:
 ```
 {
 	[ 
@@ -129,11 +129,12 @@ get all records of a specific event
 * Path: `/admin/login`
 * REST method: `POST`
 * Parameter: the admin password (String)
-* Return: Access Token (String)
-* Example return:
+* Return: Access Token (String), SuccessOrNot (Boolean)
+#### Example return:
 ```
 {
 	'token': 50935afds9f8,
+	'success': true
 }
 ```
 
@@ -146,13 +147,13 @@ Signing up a user at a specific event
 * REST method: `GET`
 * Parameter: Card ID    
 * Parameter: Event ID
-* Return: Temporary access token, Object ID
-* Example return:
+* Return: Temporary access token (String), Object ID (String), SuccessOrNot (Boolean), DueOrNot (Boolean)
+#### Example return
 ```
 {
 	'token': 50935afds9f8,
 	'_id': 4982042904,
-	'valid': true,
+	'success': true,
 	'due': false
 }
 ```
@@ -166,7 +167,7 @@ which will return the information of the user who signs up successfully.
 * Parameter: Temporary access token   
 * Parameter: Object ID
 * Return: base64 encoded image, first name, last name    
-* Example return:
+#### Example return:
 ```
 { 
   'avatar': 'abcdefg==',
