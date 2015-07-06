@@ -1,13 +1,17 @@
 
 module.exports = function(app) {
 
-	app.post("/sign_up/add_record",      sign_up.add_record);
+// Routes designated for Card-Reader APIs 
+	app.post("/api/sign_up/",              api.signup);
 
-	app.delete("/sign_up/delete_record", sign_up.delete_record);
+	app.post("/api/sign_up/get_user_info", api.get_user_info);
 
-	app.get("/sign_up/record/:id",       sign_up.get_specific_record);
+// Routes designated for Web Interface
+	app.delete("/sign_up/delete_record",   web.delete_record);
 
-	app.get("/sign_up/record",           sign_up.get_all_records);
+	app.get("/sign_up/record/:id",         web.get_specific_record);
+
+	app.get("/sign_up/record",             web.get_all_records);
 
 	// catch 404 and forward to error handler
 	// will catch any url that is not on the routing table
