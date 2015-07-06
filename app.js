@@ -8,6 +8,7 @@ var sign_up      = require('./routes/sign_up');
 var mongoose     = require('mongoose');
 var app          = express();
 
+
 /******************************/
 // Route path
 
@@ -20,6 +21,7 @@ app.get("/sign_up/record/:id",       sign_up.get_specific_record);
 app.get("/sign_up/record",           sign_up.get_all_records);
 
 // catch 404 and forward to error handler
+// will catch any url that is not on the routing table
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
@@ -28,32 +30,11 @@ app.use(function(req, res, next) {
 
 /******************************/
 
+require('./config/config')(app);
+require('./config/error_handler')(app);
+require('http').createServer(app).listen( app.get('port') );
 
-
-
-// error handlers
-
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
-    });
-  });
-}
-
-// production error handler
-// no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
-});
+console.log( " Server starts listening on port " + app.get('port') );
 
 
 module.exports = app;
