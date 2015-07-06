@@ -6,6 +6,7 @@ The backend is divided into two part: API, Web
 
 
 # APIs
+
 ## For web interface
 ### delete_record
 * Path: `/signup/record/`
@@ -183,6 +184,16 @@ which will return the information of the user who signs up successfully.
   'name': [ 'John', 'Doe' ] 
 }
 ```    
+
+### Expired token
+
+Note that for all APIs listed above, if the incoming Access Token has expired, the server will respond with a HTTP 403 status code with error messages like:
+```
+{
+	'success':false,
+	'message':'Expired access token'
+}
+```
 
 ## Database
 ### Lookup table
