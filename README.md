@@ -9,35 +9,35 @@ The backend is divided into two part: API, Web
 ## For web interface
 ### delete_record
 * Path: `/signup/record/`
-* REST method: DELETE
-* Parameter: ObjectID: String
-* Parameter: Access Token: String
+* REST method: `DELETE`
+* Parameter: ObjectID: (String)
+* Parameter: Access Token: (String)
 * Return: Status
 
 ### get_specific_record
 * Path: `/signup/record/`
-* REST method: GET
-* Parameter: ObjectID: String
-* Parameter: Access Token: String
-* Return: The record: JSON
+* REST method: `GET`
+* Parameter: ObjectID: (String)
+* Parameter: Access Token: (String)
+* Return: The record (JSON)
 
-## get_all_records
+### get_all_records
 * Path: `/signup/records`
-* REST method: GET
-* Parameter: Access Token: String
-* Return: The records: JSON
+* REST method: `GET`
+* Parameter: Access Token (String)
+* Return: The records (JSON)
 
 
 ## For cardreader
 ### signup
 * Path: `/api/signup/`
-* REST method: GET
+* REST method: `GET`
 * Parameter: Card ID    
 * Return: Temporary access token, Object ID
 
 ### get_user_info
 * Path: `/api/signup/user`
-* REST method: GET
+* REST method: `GET`
 * Parameter: Temporary access token   
 * Parameter: Object ID
 * Return: base64 encoded image, first name, last name    
