@@ -1,4 +1,4 @@
-var database = require('database');
+var config = require('environment_variables');
 var jwt = require('jsonwebtoken');
 
 module.exports = function(req, res, next) {
@@ -10,12 +10,15 @@ module.exports = function(req, res, next) {
 	if (token) {
 
 		// verifies secret and checks exp
-		jwt.verify(token, database.secret, function(err, decoded) {			
-			if (err) {
-				return res.json({ success: false, message: 'Failed to authenticate token.' });		
+		jwt.verify(token, config.db_secret, function(error, decoded) {			
+			if (error) {
+
+				return res.status(config.STATUS_CODE_TOKEN_EXPIRE).send({ 
+					success: false, 
+					message: 'Token expired.'
+				});
+
 			} else {
-				// if everything is good, save to request for use in other routes
-				req.decoded = decoded;	
 				next();
 			}
 		});
@@ -24,7 +27,7 @@ module.exports = function(req, res, next) {
 
 		// if there is no token
 		// return an error
-		return res.status(403).send({ 
+		return res.status(config.STATUS_CODE_TOKEN_EXPIRE).send({ 
 			success: false, 
 			message: 'No token provided.'
 		});

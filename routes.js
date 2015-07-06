@@ -1,5 +1,5 @@
-var api = require('api');
-var web = require('web');
+var api  = require('api');
+var web  = require('web');
 var auth = require('auth');
 
 module.exports = function(app) {
@@ -19,7 +19,7 @@ module.exports = function(app) {
 
 	app.get("/signup/records/event/:id",  web.get_all_records_in_event);
 
-	app.get("/signup/events",     web.get_all_events);
+	app.get("/signup/events",             web.get_all_events);
 
 	app.get("/admin/login",               web.admin_login);
 

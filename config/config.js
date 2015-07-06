@@ -1,4 +1,4 @@
-var database = require('database');
+var configs = require('environment_variables');
 
 module.exports = function(app) {
 
@@ -13,7 +13,7 @@ module.exports = function(app) {
 	app.use(morgan('dev'));
 
 	// set up database
-	mongoose.connect( database.path );
+	mongoose.connect( configs.db_path );
 
 	app.use(bodyParser.json());
 	app.use(bodyParser.urlencoded({ extended: false }));
