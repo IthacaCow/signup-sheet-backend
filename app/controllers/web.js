@@ -17,7 +17,7 @@ exports.admin_login = function (req, res) {
 		}
 		else{
 			if( admin_user ){
-				var token = jwt.sign(user, config.db_secret, {
+				var token = jwt.sign(user, config.jwt_secret, {
 					expiresInMinutes: 30 // expires in 30 minutes
 				});
 

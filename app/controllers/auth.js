@@ -10,7 +10,7 @@ module.exports = function(req, res, next) {
 	if (token) {
 
 		// verifies secret and checks exp
-		jwt.verify(token, config.db_secret, function(error, decoded) {			
+		jwt.verify(token, config.jwt_secret, function(error, decoded) {			
 			if (error) {
 
 				return res.status(config.STATUS_CODE_TOKEN_EXPIRE).send({ 
