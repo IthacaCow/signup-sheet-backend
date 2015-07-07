@@ -8,11 +8,6 @@ var admin = new mongoose.Schema ({
 		{ type: String , default: '' }
 });
 
-
-module.exports = mongoose.model('Admin', admin);
-
-/*
-
 var Admin = mongoose.model('Admin', admin);
 
 Admin.encrypt_password = function (password) {
@@ -24,5 +19,5 @@ Admin.encrypt_password = function (password) {
 	}
 };
 
-*/
 
+module.exports = Admin;

@@ -5,19 +5,19 @@ var records  = require('../models/record');
 var admin    = require('../models/admin');
 var events   = require('../models/event');
 
+var exports = {};
 
 exports.admin_login = function (req, res) {
 
-	// don't do password encryption for now
-	// var encrypted_password = admin.encrypt_password( req.body.password );
+	var encrypted_password = admin.encrypt_password( req.body.password );
 	
-	admin.findOne( {password: req.body.password}, function(error,admin_user){
+	admin.findOne( {password: encrypted_password}, function(error,admin_user){
 		if( error ){
 			throw error;
 		}
 		else{
 			if( admin_user ){
-				var token = jwt.sign(user, config.jwt_secret, {
+				var token = jwt.sign(admin_user, config.jwt_secret, {
 					expiresInMinutes: 30 // expires in 30 minutes
 				});
 
@@ -94,4 +94,4 @@ exports.delete_record = function (req, res) {
 };
 
 
-
+module.exports = exports;

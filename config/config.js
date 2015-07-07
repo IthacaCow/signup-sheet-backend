@@ -4,6 +4,7 @@ var cookie_parser   = require('cookie-parser');
 var body_parser     = require('body-parser');
 var method_override = require('method-override');
 var morgan          = require('morgan');
+var error_handler   = require('errorhandler');
 
 module.exports = function(express,app) {
 
@@ -23,6 +24,7 @@ module.exports = function(express,app) {
 	app.use(body_parser);
 	app.use(method_override);
 	app.use(express.static(__dirname + '/public'));
+	app.use(error_handler({ dumpExceptions: true, showStack: true }));
 
 
 };

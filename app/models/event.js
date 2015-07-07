@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var event = new mongoose.Schema({
+var _event = new mongoose.Schema({
 
 	start_time: 
 		{ type: Date,   default: Date.now, required: true },
@@ -9,4 +9,4 @@ var event = new mongoose.Schema({
 
 });
 
-module.exports = mongoose.model('Event', event);
+module.exports = mongoose.model('Event', _event);
