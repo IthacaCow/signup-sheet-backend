@@ -195,6 +195,12 @@ Note that for all APIs listed above, if the incoming Access Token has expired, t
 }
 ```
 
+## Run the server
+
+under the project home directory, run `npm start`
+Make sure that `mongod` has been started before you run this command
+
+
 ## Database
 ### Lookup table
 1. Card ID
