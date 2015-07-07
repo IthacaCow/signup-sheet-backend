@@ -1,6 +1,6 @@
 
 var mongoose = require('mongoose');
-var db_path = "mongodb://localhost/test";
+var db_path = "mongodb://localhost/GIS";
 
 module.exports = function() {
 

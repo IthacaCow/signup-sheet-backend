@@ -7,6 +7,6 @@ var _event = new mongoose.Schema({
 	end_time: 
 		{ type: Date,   default: Date.now, required: true },
 
-});
+},{ collection : 'event' });
 
 module.exports = mongoose.model('Event', _event);
