@@ -195,6 +195,14 @@ Note that for all APIs listed above, if the incoming Access Token has expired, t
 }
 ```
 
+# Run the server
+## Start mongo db
+`mongod --config /etc/mongod.conf`
+## Start Node.js
+under the project home directory, run `npm install && npm start`
+
+
+
 ## Database
 ### Lookup table
 1. Card ID
