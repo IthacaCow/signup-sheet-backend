@@ -1,8 +1,11 @@
-# signup-sheet-backend
-A backend for the GIS signup system
-The backend is divided into two part: API, Web
-* API: Interface for the card-reader
-* Web: Interface for the web admin page
+# signup-sheet-backend.
+
+#### A backend for the GIS signup system.
+
+The backend is divided into two part: **API** , **Web**
+
+* **API**: Interface for the card-reader
+* **Web**: Interface for the web admin page
 
 
 # APIs
