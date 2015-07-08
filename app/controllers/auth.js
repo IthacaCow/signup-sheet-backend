@@ -1,7 +1,9 @@
 var config = require('environment_variables');
-var jwt = require('jsonwebtoken');
+var jwt    = require('jsonwebtoken');
 
 module.exports = function(req, res, next) {
+
+	console.log('Incoming request: METHOD: %s, Directory: %s', req.method, req.url);
 
 	// check header or url parameters or post parameters for token
 	var token = req.body.token || req.param('token') || req.headers['x-access-token'];
@@ -33,5 +35,5 @@ module.exports = function(req, res, next) {
 		});
 		
 	}
-	
+
 };

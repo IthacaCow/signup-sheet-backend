@@ -1,6 +1,10 @@
 
+var error_handler = require('errorhandler');
+
 // error handlers
 module.exports = function ( app ) {
+
+	app.use(error_handler({ dumpExceptions: true, showStack: true }));
 
 	// development error handler
 	// will print stacktrace
