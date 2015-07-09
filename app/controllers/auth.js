@@ -3,7 +3,7 @@ var jwt    = require('jsonwebtoken');
 
 module.exports = function(req, res, next) {
 
-	console.log('Incoming request: METHOD: %s, Directory: %s', req.method, req.url);
+	console.log('Authenticating incoming request: METHOD: %s, Directory: %s', req.method, req.url);
 	console.log(req.body);
 
 	// check header or url parameters or post parameters for token
@@ -12,13 +12,14 @@ module.exports = function(req, res, next) {
 	// decode token
 	if (token) {
 
-		// verifies secret and checks exp
+		// verifies secret and checks if token expires
 		jwt.verify(token, config.jwt_secret, function(error, decoded) {			
+
 			if (error) {
 
 				return res.status(config.STATUS_CODE_TOKEN_EXPIRE).send({ 
 					success: false, 
-					message: 'Token expired.'
+					message: error.message
 				});
 
 			} else {

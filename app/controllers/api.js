@@ -26,7 +26,7 @@ function find_event( event_id, user_id, res ) {
 				else{
 
 					// Sign an access token
-					var access_token = jwt.sign(record, config.jwt_secret, {
+					var access_token = jwt.sign({}, config.jwt_secret, {
 						expiresInSeconds: 10 // expires in 10 seconds
 					});
 
@@ -55,9 +55,6 @@ function find_event( event_id, user_id, res ) {
 
 exports.signup = function(req, res) {
 
-	console.log('Incoming request: METHOD: %s, Directory: %s', req.method, req.url);
-	console.log(req.body);
-
 	users.findOne({cardID: req.body.cardID}, function (error, user){
 
 		if( error ){
@@ -80,9 +77,6 @@ exports.signup = function(req, res) {
 };
 
 exports.get_user_info = function(req, res) {
-
-	console.log('Incoming request: METHOD: %s, Directory: %s', req.method, req.url);
-	console.log(req.body);
 
 	users.find({ _id: req.body.id }, function( error, user ){
 		if( error ){
