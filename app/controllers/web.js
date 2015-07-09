@@ -22,8 +22,8 @@ exports.admin_login = function (req, res) {
 			admin_user.comparePassword(req.body.password, function(err, isMatch) {
 				if(err) throw err;
 				else if(isMatch){
-					var token = jwt.sign(admin_user, config.jwt_secret, {
-						expiresInMinutes: 30 // expires in 30 minutes
+					var token = jwt.sign({}, config.jwt_secret, {
+						expiresInSeconds: config.ADMIN_LOGIN_TOKEN_EXPIRE_TIME 
 					});
 					res.json({
 						token: token,

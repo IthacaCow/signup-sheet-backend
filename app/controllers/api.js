@@ -27,7 +27,7 @@ function find_event( event_id, user_id, res ) {
 
 					// Sign an access token
 					var access_token = jwt.sign({}, config.jwt_secret, {
-						expiresInSeconds: 10 // expires in 10 seconds
+						expiresInSeconds: config.CARD_READER_TOKEN_EXPIRE_TIME 
 					});
 
 					var response = {
