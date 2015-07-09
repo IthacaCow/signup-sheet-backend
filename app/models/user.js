@@ -1,8 +1,9 @@
 var mongoose = require('mongoose');
+var user_collection_name = require('database').user_collection_name;
 
 var user = new mongoose.Schema({
 
-	card_id:
+	cardID:
 		{ type: String, default: '' , required: true },
 	firstname: 
 		{ type: String, default: '' , required: true },
@@ -14,8 +15,9 @@ var user = new mongoose.Schema({
 	// More info: https://gist.github.com/aheckmann/2408370 
 	// More info: http://stackoverflow.com/questions/27353346/saving-image-with-mongoose 
 
-});
+},{ collection : user_collection_name } );
 
+console.log("Setting up user collection: " + user_collection_name);
 
 module.exports = mongoose.model('User', user);
 

@@ -1,40 +1,47 @@
 
-var config   = require('environment_variables');
-
-var records  = require('../models/record');
-var admin    = require('../models/admin');
-var events   = require('../models/event');
+var config  = require('environment_variables');
+var jwt     = require('jsonwebtoken');
+var records = require('../models/record');
+var admin   = require('../models/admin');
+var events  = require('../models/event');
 
 var exports = {};
 
 exports.admin_login = function (req, res) {
 
-	var encrypted_password = admin.encrypt_password( req.body.password );
+	console.log("Incoming request body: " );
+	console.log(req.body);
 	
-	admin.findOne( {password: encrypted_password}, function(error,admin_user){
-		if( error ){
+	admin.findOne( { username: req.body.username }, function(error,admin_user){
+		if( error )
 			throw error;
+		if( !admin_user )
+			console.log("Cannot find admin user");
+
+		if( !error && admin_user ){
+			admin_user.comparePassword(req.body.password, function(err, isMatch) {
+				if(err) throw err;
+				else if(isMatch){
+					var token = jwt.sign(admin_user, config.jwt_secret, {
+						expiresInMinutes: 30 // expires in 30 minutes
+					});
+					res.json({
+						token: token,
+						success: true
+					});
+				}
+				else{
+					res.status(config.STATUS_CODE_UNAUTHORIZED).json({
+						message: 'Wrong password.'
+					});
+				}
+			});
 		}
 		else{
-			if( admin_user ){
-				var token = jwt.sign(admin_user, config.jwt_secret, {
-					expiresInMinutes: 30 // expires in 30 minutes
-				});
-
-				res.json({
-					token: token,
-					success: true
-				});
-			}
-			else{
-
-				res.status(config.STATUS_CODE_UNAUTHORIZED).json({
-					message: 'Wrong password.'
-				});
-
-			}
+			res.status(config.STATUS_CODE_UNAUTHORIZED).json({
+				message: 'Authentication fail.'
+			});
 		}
-
 	});
 
 };

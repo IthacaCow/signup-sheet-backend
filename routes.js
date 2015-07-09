@@ -17,7 +17,7 @@ module.exports = function (router) {
  *  @return: SuccessOrNot (Boolean)
  *  @return: DueOrNot (Boolean)
  */
-	router.post("/api/signup", api.signup);
+	router.get("/api/signup", api.signup);
 
 
 /* == Web Interface API === */
@@ -44,7 +44,7 @@ module.exports = function (router) {
  *  @return: first name (String)
  *  @return: last name (String)
  */
-	router.post("/api/signup/get_user_info", api.get_user_info);
+	router.post("/api/signup/user", api.get_user_info);
 
 
 

@@ -1,10 +1,11 @@
-
+var jwt     = require('jsonwebtoken');
+var config  = require('environment_variables');
 var users   = require('../models/user');
-var records = require('../models/record');
+var record  = require('../models/record');
 var events  = require('../models/event');
 var exports = {};
 
-function find_event( event_id, user_id ) {
+function find_event( event_id, user_id, res ) {
 
 	events.find({event_id: event_id}, function( error, _event ){
 		if( error ){
@@ -13,29 +14,32 @@ function find_event( event_id, user_id ) {
 		else if( event_id ){
 
 			// Save the new record
-			var new_record = new Record({
+			var new_record = new record({
 				user: user_id,
 				_event: event_id
 			});
 
-			new_record.save( function(error) {
-				if( error )
+			new_record.save( function(error,record) {
+				if( error ){
 					res.status(config.STATUS_CODE_INTERNAL_ERROR).json( { message: error } );
+				}
+				else{
+
+					// Sign an access token
+					var access_token = jwt.sign(record, config.jwt_secret, {
+						expiresInSeconds: 10 // expires in 10 seconds
+					});
+
+					var response = {
+						id: user_id,
+						/* TODO due:  users.is_due( user ), */
+						token: access_token,
+						success: true
+					}
+
+					res.json( response );	
+				}
 			});
-
-			// Sign an access token
-			var access_token = jwt.sign(user, config.jwt_secret, {
-				expiresInSeconds: 10 // expires in 10 seconds
-			});
-
-			var response = {
-				id: user._id,
-				/* TODO due:  users.is_due( user ), */
-				token: access_token,
-				success: true
-			}
-
-			res.json( response );	
 
 		}
 		else{
@@ -51,14 +55,20 @@ function find_event( event_id, user_id ) {
 
 exports.signup = function(req, res) {
 
-	users.findOne({card_id: req.body.card_id}, function (error, user){
+	console.log('Incoming request: METHOD: %s, Directory: %s', req.method, req.url);
+	console.log(req.body);
+
+	users.findOne({cardID: req.body.cardID}, function (error, user){
 
 		if( error ){
 			res.status(config.STATUS_CODE_INTERNAL_ERROR).json( { message: error } );
 		}
 		else{
-			if( user )
-				find_event( req.body.event_id, user._id );
+			console.log( "Found user: " );
+			console.log( user );
+			if( user ){
+				find_event( req.body.event_id, user._id, res );
+			}
 			else{
 				res.status(config.STATUS_CODE_INTERNAL_ERROR).json({
 					message: 'The card ID does not have a corresponding user.'
@@ -71,7 +81,10 @@ exports.signup = function(req, res) {
 
 exports.get_user_info = function(req, res) {
 
-	user.find({_id: req.body.id}, function( error, user ){
+	console.log('Incoming request: METHOD: %s, Directory: %s', req.method, req.url);
+	console.log(req.body);
+
+	users.find({ _id: req.body.id }, function( error, user ){
 		if( error ){
 			res.status(config.STATUS_CODE_INTERNAL_ERROR).json( { message: error } );
 		}

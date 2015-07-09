@@ -4,9 +4,10 @@ var jwt    = require('jsonwebtoken');
 module.exports = function(req, res, next) {
 
 	console.log('Incoming request: METHOD: %s, Directory: %s', req.method, req.url);
+	console.log(req.body);
 
 	// check header or url parameters or post parameters for token
-	var token = req.body.token || req.param('token') || req.headers['x-access-token'];
+	var token = req.body.token  || req.headers['x-access-token'];
 
 	// decode token
 	if (token) {
