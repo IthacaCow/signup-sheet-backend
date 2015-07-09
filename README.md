@@ -175,7 +175,7 @@ Signing up a user at a specific event
 This API is supposed to be used in companion with the previous one, 
 which will return the information of the user who signs up successfully.
 * Path: `/api/signup/user`
-* REST method: `GET`
+* REST method: `POST`
 * Parameter: Temporary access token   
 * Parameter: Object ID
 * Return: base64 encoded image, first name, last name    
