@@ -83,7 +83,7 @@ The backend is divided into two part: **API** , **Web**
 
 ### get_all_records_in_event
 get all records of a specific event
-* Path: `/signup/records/event/:id`
+* Path: `/signup/records/:event_id`
 * REST method: `GET`
 * Parameter: Access Token (String)
 * Parameter: ObjectID of the specific event (String)
