@@ -1,0 +1,6 @@
+
+<div id="records" ng-controller="ShowAllRecords">
+    <ul ng-repeat="record in records">
+		<li> {{ record.timestamp | date:'dd.MM H:mm' }} </li>
+    </ul>
+</div>

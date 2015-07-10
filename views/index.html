@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="App">
+<head>
+    <meta charset="utf-8">
+    <title>GIS Sign Up Viewer</title>
+
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/app.css">
+</head>
+
+<body>
+
+<div class="container" ng-controller="AppController">
+    <div ng-include="'partials/navbar.html'"></div>
+
+    <header class="row" ng-include="'partials/header.html'"></header>
+
+    <div id="content" class="row">
+        <div class="span1"></div>
+
+        <section id="mainContent" ng-view class="span6"></section>
+
+        <aside class="span3 offset1" ng-include="'partials/sidebar.html'"></aside>
+
+        <div class="span1"></div>
+    </div>
+</div>
+
+
+<!-- JavaScript -->
+<script type="text/javascript" src="js/lib/zepto.min.js"></script>
+
+<!-- AngularJS -->
+<script type="text/javascript" src="js/lib/angular/angular.min.js"></script>
+
+<!-- app -->
+<script type="text/javascript" src="../js/App.js"></script>
+
+<script type="text/javascript" src="../js/Services.js"></script>
+<script type="text/javascript" src="../js/Controllers.js"></script>
+<script type="text/javascript" src="../js/Filters.js"></script>
+
+</body>
+
+</html>

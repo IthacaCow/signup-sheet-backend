@@ -8,8 +8,10 @@ app.use(logger('dev'));
 app.use(body_parser.json());
 app.use(body_parser.urlencoded({ extended: true }));
 
-var routes = require('./routes');
-app.use('/',routes(express.Router()));
+var web_routes = require('./routes/web');
+var api_routes = require('./routes/api');
+app.use('/web',web_routes(express.Router()));
+app.use('/api',api_routes(express.Router()));
 
 require('config')(app);
 

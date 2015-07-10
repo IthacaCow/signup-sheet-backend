@@ -48,7 +48,7 @@ exports.admin_login = function (req, res) {
 
 exports.get_all_records_in_event = function (req, res) {
 	records.find({})
-		  .populate({ path: 'event', match: { _id: req.body.id }})
+		  .populate({ path: 'event', match: { _id: req.body.event_id }})
 	      .exec(function(error, records){
 				if( error ){
 					res.status(config.STATUS_CODE_INTERNAL_ERROR).json( { message: error } );

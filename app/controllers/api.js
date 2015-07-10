@@ -7,11 +7,18 @@ var exports = {};
 
 function find_event( event_id, user_id, res ) {
 
-	events.find({event_id: event_id}, function( error, _event ){
+	events.findOne({_id: event_id}, function( error, _event ){
+
+		console.log("Event: ");
+		console.log(_event);
+
 		if( error ){
-			res.status(config.STATUS_CODE_INTERNAL_ERROR).json( { message: error } );
+			res.status(config.STATUS_CODE_INTERNAL_ERROR).json( { 
+				message: error, 
+				success: false
+			} );
 		}
-		else if( event_id ){
+		else if( _event ){
 
 			// Save the new record
 			var new_record = new record({
@@ -30,11 +37,19 @@ function find_event( event_id, user_id, res ) {
 						expiresInSeconds: config.CARD_READER_TOKEN_EXPIRE_TIME 
 					});
 
+					// Check if the current time is greater than the end time of the event
+					var is_due = ((new Date(_event.end_time)) < (new Date()));
+
 					var response = {
+
 						id: user_id,
-						/* TODO due:  users.is_due( user ), */
+
+						due: is_due, 
+
 						token: access_token,
-						success: true
+
+						// if the request is due, return false
+						success: !is_due
 					}
 
 					res.json( response );	
@@ -44,7 +59,8 @@ function find_event( event_id, user_id, res ) {
 		}
 		else{
 			res.status(config.STATUS_CODE_INTERNAL_ERROR).json({
-				message: 'Event ID not found.'
+				message: 'Event ID not found.',
+				success: false
 			});
 
 
@@ -69,6 +85,7 @@ exports.signup = function(req, res) {
 			else{
 				res.status(config.STATUS_CODE_INTERNAL_ERROR).json({
 					message: 'The card ID does not have a corresponding user.'
+					success: false
 				});
 			}
 		}
